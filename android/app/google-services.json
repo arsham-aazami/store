@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "795012862410",
+    "project_id": "store-be5dc",
+    "storage_bucket": "store-be5dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795012862410:android:e06af14ef0908d14bc7f33",
+        "android_client_info": {
+          "package_name": "com.example.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795012862410-is4pdgroq86vop2kgvlpm7mvcsm8plml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrksO_ltcltHz08dkSLvbykBFgYSLKxuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795012862410-is4pdgroq86vop2kgvlpm7mvcsm8plml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
