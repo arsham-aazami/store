@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/consts.dart';
+import 'package:store/routes/login.dart';
 import 'package:store/widgets/CustomInput.dart';
 import 'package:store/widgets/customButton.dart';
 import 'package:get/get.dart';
@@ -34,12 +35,13 @@ class _SignUpPageState extends State<SignUpPage> {
   // signing up process
   Future<String?> createAccountForUser() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailValue, password: passWordValue);
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailValue, password: passWordValue);
       return "ok";
     } on FirebaseAuthException catch (error) {
       if (error.code == "weak-password") {
         return "The password is too weak";
-      }else if (error.code == "email-already-in-use") {
+      } else if (error.code == "email-already-in-use") {
         return "The accoutn with this email is already in use!";
       }
       return error.message;
@@ -55,10 +57,20 @@ class _SignUpPageState extends State<SignUpPage> {
     String? result = await createAccountForUser();
     if (result != "ok") {
       showAlertDialog(result!);
-    }
-     setState(() {
+       setState(() {
         isLoading = false;
       });
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      Get.to(LoginPage());
+      Get.snackbar("Successful", "account created",
+          backgroundColor: Color.fromARGB(221, 46, 216, 94),
+          icon: const Icon(Icons.check_circle),
+          );
+          
+    }
   }
 
   @override

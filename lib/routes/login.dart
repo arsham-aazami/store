@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:store/consts.dart';
 import 'package:store/widgets/CustomInput.dart';
@@ -18,7 +19,26 @@ class _LoginPageState extends State<LoginPage> {
   String passWordValue = "";
 
   void navigateToSignUpPage() => Get.to(() => SignUpPage());
-  void showAlertDialog() {
+
+  Future<String?> logingInUser() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailValue, password: passWordValue);
+      return "Ok";
+    } on FirebaseAuthException catch (error) {
+      if (error.code == "weak-passwords") {
+        return "The passwords is too weak";
+      } else if (error.code == "email-already-use") {
+        return "The email is already taken";
+      }
+    } catch (error) {
+      return error.toString();
+    }
+    return null;
+  }
+
+
+  void showAlertDialog(message) {
     Get.defaultDialog(
         title: "Invalid input",
         titleStyle: Consts.textStyleOne,
@@ -31,6 +51,18 @@ class _LoginPageState extends State<LoginPage> {
         onConfirm: () => Get.back());
   }
 
+ void login() async{
+    setState(() {
+      isLoading = true;
+    });
+    String? result = await logingInUser();
+    if (result != "OK"){
+      showAlertDialog(result);
+    }
+    setState(() {
+      isLoading = false;
+    });
+ }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Login",
                     buttonTextStyle: Consts.textStyleTwo,
                     width: 340,
-                    click: () => emailValue.isEmpty || passWordValue.isEmpty
-                        ? showAlertDialog()
-                        : setState(() => isLoading = true),
+                    click: login,
                     topPadding: 10,
                   )
                 ],
@@ -94,4 +124,10 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
+
+@override
+Widget build(BuildContext context) {
+  // TODO: implement build
+  throw UnimplementedError();
 }

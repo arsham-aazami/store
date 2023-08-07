@@ -37,9 +37,9 @@ class Rout extends StatelessWidget {
                 User? user = streamSnapShot.data;
                 if (user == null) {
                   print("connected to firebase");
-                  return LoginPage();
+                  return const LoginPage();
                 } else {
-                  return const Home();
+                  return LoginPage();
                 }
               }
               return Container();
