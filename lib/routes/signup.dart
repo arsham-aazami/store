@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/consts.dart';
 import 'package:store/routes/login.dart';
@@ -64,9 +63,9 @@ class _SignUpPageState extends State<SignUpPage> {
       setState(() {
         isLoading = false;
       });
-      Get.to(LoginPage());
+      Get.to(() => const LoginPage());
       Get.snackbar("Successful", "account created",
-          backgroundColor: Color.fromARGB(221, 46, 216, 94),
+          backgroundColor: Consts.snackBarSuccessfulColor,
           icon: const Icon(Icons.check_circle),
           );
           

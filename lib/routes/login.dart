@@ -26,10 +26,10 @@ class _LoginPageState extends State<LoginPage> {
           email: emailValue, password: passWordValue);
       return "Ok";
     } on FirebaseAuthException catch (error) {
-      if (error.code == "weak-passwords") {
-        return "The passwords is too weak";
-      } else if (error.code == "email-already-use") {
-        return "The email is already taken";
+      if (error.code == "user-not-found") {
+        return "NO user found for this email";
+      } else if (error.code == "wrong-password") {
+        return "The email and password don't match";
       }
     } catch (error) {
       return error.toString();
@@ -37,12 +37,11 @@ class _LoginPageState extends State<LoginPage> {
     return null;
   }
 
-
-  void showAlertDialog(message) {
+  Future<void> showAlertDialog(String message) async {
     Get.defaultDialog(
         title: "Invalid input",
         titleStyle: Consts.textStyleOne,
-        content: const Text("Please enter both your email and password"),
+        content: Text(message),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 22, vertical: 22),
         buttonColor: Consts.colorStyleThree,
@@ -51,18 +50,28 @@ class _LoginPageState extends State<LoginPage> {
         onConfirm: () => Get.back());
   }
 
- void login() async{
+  void login() async {
     setState(() {
       isLoading = true;
     });
     String? result = await logingInUser();
-    if (result != "OK"){
-      showAlertDialog(result);
+    if (result != "OK") {
+      showAlertDialog(result!);
+      setState(() {
+        isLoading = false;
+      });
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      Get.snackbar("Successful", "You loged in successfully",
+          backgroundColor: Consts.snackBarSuccessfulColor,
+          icon: const Icon(Icons.check_circle));
+      showAlertDialog(result!);
+      
     }
-    setState(() {
-      isLoading = false;
-    });
- }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

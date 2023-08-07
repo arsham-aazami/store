@@ -39,7 +39,7 @@ class Rout extends StatelessWidget {
                   print("connected to firebase");
                   return const LoginPage();
                 } else {
-                  return LoginPage();
+                  return Home();
                 }
               }
               return Container();
