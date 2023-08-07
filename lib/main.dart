@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: Rout(),
         theme: ThemeData(
             textTheme: GoogleFonts.b612TextTheme(Theme.of(context).textTheme)));
         
