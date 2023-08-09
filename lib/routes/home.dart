@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:store/consts.dart';
+import 'package:store/routes/mainHome.dart';
 import 'package:store/routes/profile.dart';
 import 'package:store/routes/saved.dart';
 import 'package:store/routes/search.dart';
@@ -16,7 +17,7 @@ class _HomeState extends State<Home> {
   int currentIndex = 0;
   List<Widget> bottomTap = [
     SearchBox(),
-    Text("Home Page"),
+    MainHome(),
     SavedPage(),
     Profile()
   ];
