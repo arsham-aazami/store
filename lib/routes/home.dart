@@ -10,28 +10,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: Center(child: Text("This is Homepage")),
-     bottomNavigationBar: Container(
-      decoration: const BoxDecoration(
-        color: Consts.customizedBlue
-      ),
-      child: GNav(
-        rippleColor: Consts.customizedBlue,
-        activeColor: Color.fromARGB(244, 0, 0, 0),
-        iconSize: 24,
-        tabs: [
-          GButton(icon: Icons.home_filled, text: "Home",),
-          GButton(icon: Icons.save_as_rounded, text: "Save",),
-          GButton(icon: Icons.search_rounded, text: "Search",),
-          GButton(icon: Icons.account_circle, text: "Account",),
-
-        ],
-
+        bottomNavigationBar: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Consts.customizedBlue,
+          borderRadius: BorderRadius.circular(15),
         ),
-     ),
-    );
+        child: GNav(
+            rippleColor: Consts.customizedBlue,
+            activeColor: Consts.customizedBlue,
+            tabBackgroundColor: Consts.colorStyleThree,
+            tabBorderRadius: 15,
+            iconSize: 30,
+            gap: 2,
+            tabs: const [
+              GButton(icon: Icons.search),
+              GButton(icon: Icons.home),
+              GButton(icon: Icons.bookmark),
+              GButton(icon: Icons.person),
+            ],
+            selectedIndex: currentIndex,
+            onTabChange: (index) => setState(() => currentIndex = index)
+            ),
+            
+      ),
+    ));
   }
 }

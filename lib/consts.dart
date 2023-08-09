@@ -8,7 +8,7 @@ class Consts{
   static const colorStyleThree = Color.fromARGB(232, 10, 10, 10);
   static const snackBarSuccessfulColor = Color.fromARGB(232, 69, 230, 52);
   static const colorStyleFour = Color.fromARGB(232, 255, 255, 255);
-  static const customizedBlue = Color.fromRGBO(84, 186, 185, 100);
+  static const customizedBlue = Color.fromRGBO(93, 214, 212, 0.612);
   static const customizedGrayOne = Color.fromRGBO(68, 68, 68, 100);
   static const customizedGrayTwo = Color.fromRGBO(217, 217, 217, 100);
   static const textStyleAlertDialog = TextStyle(fontSize: 8, fontWeight: FontWeight.w100, color: Color.fromARGB(232, 255, 255, 255));
