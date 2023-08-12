@@ -68,7 +68,6 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Consts.snackBarSuccessfulColor,
           icon: const Icon(Icons.check_circle));
       showAlertDialog(result!);
-      
     }
   }
 
