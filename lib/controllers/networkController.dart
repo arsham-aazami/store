@@ -8,21 +8,27 @@ class NetworkController extends GetxController {
   final Connectivity _connectivity = Connectivity();
 
   @override
+  //onInt function called immediately after widget allocates the memory
   void onInit() {
     super.onInit();
     _connectivity.onConnectivityChanged.listen(_updateconnectivityStatus);
   }
 
+  //
   void _updateconnectivityStatus(ConnectivityResult connectivityResult) {
     if (connectivityResult == ConnectivityResult.none) {
       Get.rawSnackbar(
-          title: "the internet connection is not available",
-          duration: Duration(days: 1),
-          backgroundColor: Consts.colorStyleOne,
-          snackStyle: SnackStyle.GROUNDED,
-          margin: EdgeInsets.all(0));
-    }else{
-      Get.back();
+        messageText: const Text("Please connect to the internet"),
+        icon: Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_rounded),
+        duration: Duration(days: 1),
+        backgroundColor: Consts.colorStyleOne,
+        snackStyle: SnackStyle.GROUNDED,
+        margin: EdgeInsets.all(0),
+      );
+    } else {
+      if (Get.isSnackbarOpen){
+        Get.closeCurrentSnackbar();
+      }
     }
   }
 }
