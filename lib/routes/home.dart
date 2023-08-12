@@ -15,21 +15,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentIndex = 1;
-  List<Widget> bottomTap = [SearchBox(), MainHome(), SavedPage(), Profile()];
+  List<Widget> bottomTap = [const SearchBox(),  MainHome(), const SavedPage(), const Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: bottomTap.elementAt(currentIndex),
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(color: Consts.customizedGrayOne),
+          decoration: const BoxDecoration(color: Consts.customizedGrayOne),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Consts.customizedBlue,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: GNav(
+                  padding: const EdgeInsets.all(18),
                   rippleColor: Consts.customizedBlue,
                   activeColor: Consts.customizedBlue,
                   tabBackgroundColor: Consts.colorStyleThree,
