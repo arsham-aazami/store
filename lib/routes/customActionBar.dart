@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/consts.dart';
 
 class CustomActionBar extends StatelessWidget {
-  final String title;
+  final Widget title;
   final int number;
   const CustomActionBar({super.key, required this.title, required this.number});
 
@@ -18,10 +18,7 @@ class CustomActionBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: Consts.headingTextStyleTwo,
-            ),
+            title,
             Container(
                 decoration: BoxDecoration(
                   color: Consts.colorStyleFour,

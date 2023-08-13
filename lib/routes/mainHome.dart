@@ -49,7 +49,7 @@ class MainHome extends StatelessWidget {
                     return Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
+                            vertical: 15, horizontal: 10),
                         child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15)),
@@ -85,8 +85,8 @@ class MainHome extends StatelessWidget {
                                                 borderRadius: BorderRadius.circular(12)
                                           ),
                                           
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: Text(
                                               "20",
                                               style: Consts.textStyleTwo,
@@ -105,9 +105,8 @@ class MainHome extends StatelessWidget {
             }),
         const CustomActionBar(
           number: 0,
-          title: "Home",
+          title:Text("Home", style: Consts.headingTextStyleTwo,),
         ),
-        const Text("home Text")
       ]),
     );
   }
