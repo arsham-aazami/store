@@ -51,19 +51,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void login() async {
-    setState(() {
-      isLoading = true;
-    });
+    setState(() => isLoading = true);
     String? result = await logingInUser();
     if (result != "OK") {
       showAlertDialog(result!);
-      setState(() {
-        isLoading = false;
-      });
+      setState(() =>  isLoading = false);
     } else {
-      setState(() {
-        isLoading = false;
-      });
+      setState(() => isLoading = false);
       Get.snackbar("Successful", "You loged in successfully",
           backgroundColor: Consts.snackBarSuccessfulColor,
           icon: const Icon(Icons.check_circle));
@@ -75,58 +69,69 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 100.0),
-                child: Text(
-                  "Welcome \nLogin to your account",
-                  style: Consts.headingTextStyle,
-                  textAlign: TextAlign.center,
+        child: SingleChildScrollView(
+          
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 100.0),
+                  child: Text(
+                    "Welcome \nLogin to your account",
+                    style: Consts.headingTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              Column(
-                children: [
-                  CustomInput(
-                    inputText: 'Email...',
-                    onChanged: (value) {
-                      emailValue = value;
-                      print(value);
-                    },
-                    checkPassword: false,
-                    onSubmit: (String) {},
-                  ),
-                  CustomInput(
-                    inputText: 'Password...',
-                    onChanged: (value) {
-                      passWordValue = value;
-                      print(value);
-                    },
-                    checkPassword: true,
-                    onSubmit: (String) {},
-                  ),
-                  CustomButton(
-                    loading: isLoading,
-                    text: "Login",
-                    buttonTextStyle: Consts.textStyleTwo,
+                Column(
+                  
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:120.0),
+                      child: CustomInput(
+                        inputText: 'Email...',
+                        onChanged: (value) {
+                          emailValue = value;
+                          print(value);
+                        },
+                        checkPassword: false,
+                        onSubmit: (String) {},
+                      ),
+                    ),
+                    CustomInput(
+                      inputText: 'Password...',
+                      onChanged: (value) {
+                        passWordValue = value;
+                        print(value);
+                      },
+                      checkPassword: true,
+                      onSubmit: (String) {},
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100),
+                      child: CustomButton(
+                        loading: isLoading,
+                        text: "Login",
+                        buttonTextStyle: Consts.textStyleTwo,
+                        width: 340,
+                        click: login,
+                        // bottomPadding: 20,
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: CustomButton(
+                    text: "Create New Account",
+                    buttonContainerColor: Consts.colorStyleFour,
                     width: 340,
-                    click: login,
-                    topPadding: 10,
-                  )
-                ],
-              ),
-              CustomButton(
-                text: "Create New Account",
-                buttonContainerColor: Consts.colorStyleFour,
-                width: 340,
-                click: navigateToSignUpPage,
-                bottomPadding: 15,
-                leftPadding: 10,
-              )
-            ],
+                    click: navigateToSignUpPage, 
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

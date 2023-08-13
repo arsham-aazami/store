@@ -77,60 +77,69 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       body: SafeArea(
         // ignore: sized_box_for_whitespace
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 100),
-                child: Text(
-                  "Are you new?\nCreate New Account",
-                  style: Consts.headingTextStyle,
-                  textAlign: TextAlign.center,
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 100),
+                  child: Text(
+                    "Are you new?\nCreate New Account",
+                    style: Consts.headingTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              Column(
-                children: [
-                  CustomInput(
-                    inputText: "Email ...",
-                    onChanged: (value) {
-                      emailValue = value;
-                      print(value);
-                    },
-                    checkPassword: false,
-                    onSubmit: (String) {},
-                  ),
-                  CustomInput(
-                    inputText: "Password ...",
-                    onChanged: (value) {
-                      passWordValue = value;
-                      print(value);
-                    },
-                    checkPassword: true,
-                    onSubmit: (String) {},
-                  ),
-                  CustomButton(
-                    loading: isLoading,
-                    text: "Create Account",
-                    buttonContainerColor: Consts.colorStyleThree,
-                    buttonTextStyle: Consts.textStyleTwo,
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:120),
+                      child: CustomInput(
+                        inputText: "Email ...",
+                        onChanged: (value) {
+                          emailValue = value;
+                          print(value);
+                        },
+                        checkPassword: false,
+                        onSubmit: (String) {},
+                      ),
+                    ),
+                    CustomInput(
+                      inputText: "Password ...",
+                      onChanged: (value) {
+                        passWordValue = value;
+                        print(value);
+                      },
+                      checkPassword: true,
+                      onSubmit: (String) {},
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:100),
+                      child: CustomButton(
+                        loading: isLoading,
+                        text: "Create Account",
+                        buttonContainerColor: Consts.colorStyleThree,
+                        buttonTextStyle: Consts.textStyleTwo,
+                        width: 340,
+                        click: () {
+                          signup();
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top:20.0),
+                  child: CustomButton(
+                    text: "Back to Login",
+                    buttonContainerColor: Consts.colorStyleFour,
                     width: 340,
-                    click: () {
-                      signup();
-                    },
-                    topPadding: 10,
-                  )
-                ],
-              ),
-              CustomButton(
-                text: "Back to Login",
-                buttonContainerColor: Consts.colorStyleFour,
-                width: 340,
-                click: navigateToLoginPage,
-                bottomPadding: 15,
-              )
-            ],
+                    click: navigateToLoginPage,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

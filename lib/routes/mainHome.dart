@@ -46,7 +46,7 @@ class MainHome extends StatelessWidget {
                           Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                           return Center(
                             child: Container(
-                              child: Text("Product Name : ${data["name"]}"),
+                              child: Image.network("https://firebasestorage.googleapis.com/v0/b/store-be5dc.appspot.com/o/joseph-barrientos-4qSb_FWhHKs-unsplash.jpg?alt=media&token=5be27037-2c3f-454e-bf15-66cdae0504d4" )
                             ),
                           );
                       }).toList(),
