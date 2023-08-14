@@ -22,7 +22,8 @@ class MainHome extends StatelessWidget {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
                 //if something went wrong
-              } else if (snapshot.hasError) {
+              } 
+              if (snapshot.hasError) {
                 Get.defaultDialog(
                     title: "Firebase Error",
                     titleStyle: Consts.textStyleOne,

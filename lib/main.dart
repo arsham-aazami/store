@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:store/dependencyInjection.dart';
 import 'package:store/routes/login.dart';
 import 'package:store/routes/route.dart';
-
+import './routes/productDetails.dart';
 Future<void> main()async {
   runApp(MyApp());
   // DependencyInjection.init();

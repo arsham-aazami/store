@@ -18,25 +18,50 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  final Stream<QuerySnapshot> _products =
-      FirebaseFirestore.instance.collection("products").snapshots();
+  final CollectionReference _products =
+      FirebaseFirestore.instance.collection("products");
 
-  void navigateToHomePage() => Get.to(MainHome());
+  void navigateToHomePage() => print("ars");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Consts.customizedGrayOne,
       body: Container(
         child: Stack(
           children: [
-            Center(child: Text("arsham"),)
+            FutureBuilder(
+              future: _products.doc(widget.productId).get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error as String),
+                  );
+                } 
+                if(snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                
+                }
+                return Center(
+                    child: Container(
+                         child:Text("arsham")
+                    ),
+                  );
+                
+              },
+            ),
             CustomActionBar(
                 title: CustomButton(
-                    text: "back",
-                    buttonContainerColor: Consts.customizedBlue,
-                    width: 30,
-                    height: 20,
-                    click: navigateToHomePage),
+                  text: "<>",
+                  buttonContainerColor: Consts.customizedBlue,
+                  width: 34,
+                  height: 45,
+                  borderColor: Consts.customizedGrayOne,
+                  click: navigateToHomePage,
+                ),
                 number: 0)
           ],
         ),

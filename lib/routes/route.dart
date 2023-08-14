@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:store/consts.dart';
 import 'package:store/routes/login.dart';
+import 'package:store/routes/productDetails.dart';
 import 'package:store/routes/signup.dart';
 import './home.dart';
 
@@ -39,7 +40,7 @@ class Rout extends StatelessWidget {
                   print("connected to firebase");
                   return const LoginPage();
                 } else {
-                  return Home();
+                  return ProductDetails(productId:'234',);
                 }
               }
               return Container();

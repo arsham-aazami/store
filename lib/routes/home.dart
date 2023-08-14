@@ -19,6 +19,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+         backgroundColor: Consts.customizedGrayOne,
         body: bottomTap.elementAt(currentIndex),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(color: Consts.customizedGrayOne),
