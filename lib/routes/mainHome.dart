@@ -54,7 +54,7 @@ class MainHome extends StatelessWidget {
                             vertical: 15, horizontal: 10),
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(ProductDetails(productId: document.id));
+                            Get.to(() => ProductDetails(productId: document.id));
                           },
                           child: Container(
                             // height: 80,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/routes/customActionBar.dart';
+import 'package:store/routes/imageSwape.dart';
 import 'package:store/routes/mainHome.dart';
 import 'package:store/widgets/customButton.dart';
 
@@ -21,7 +22,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       FirebaseFirestore.instance.collection("products");
 
   void navigateToHomePage() => print("ars");
-
+  int pageSelected = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,33 +54,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: ListView(
                           // scrollDirection: Axis.horizontal,
                           children: [
-                            // Padding(
-                            //   padding: const EdgeInsets.symmetric(
-                            //       vertical: 5, horizontal: 20),
-                            //   child: ClipRRect(
-                            //       borderRadius: BorderRadius.circular(15),
-                            //       child: Image.network(data["images"][0])),
-                            // ),
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              // width: double.infinity,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                              height: 350,
-                              child: PageView(
-                                children: [
-                                  for (var x = 0;
-                                      x < productsImages.length;
-                                      x++)
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: Image.network(productsImages[x], fit: BoxFit.fill,),
-                                      ),
-                                    )
-                                ],
-                              ),
-                            ),
+                            ImageSwap(imageList: productsImages),
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 25),
