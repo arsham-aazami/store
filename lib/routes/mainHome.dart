@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:store/consts.dart';
 import 'package:store/routes/customActionBar.dart';
+import 'package:store/routes/productDetails.dart';
 
 class MainHome extends StatelessWidget {
   //Getting data from firestore
   final Stream<QuerySnapshot> _products =
       FirebaseFirestore.instance.collection("products").snapshots();
   MainHome({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,53 +52,59 @@ class MainHome extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 10),
-                        child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.network(
-                                        "https://firebasestorage.googleapis.com/v0/b/store-be5dc.appspot.com/o/maksim-larin-NOpsC3nWTzY-unsplash.jpg?alt=media&token=4042ef28-4c81-4efd-a38e-e86532c34648")),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0, horizontal: 5),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                          decoration: BoxDecoration(
-                                              color: Consts.customizedBlue,
-                                              borderRadius:
-                                                  BorderRadius.circular(12)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              data['name'],
-                                              style: Consts.textStyleTwo,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(ProductDetails(productId: document.id));
+                          },
+                          child: Container(
+                            // height: 80,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.network(data["images"][1], fit: BoxFit.cover,)
+                                      ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                            decoration: BoxDecoration(
+                                                color: Consts.customizedBlue,
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                data['name'],
+                                                style: Consts.textStyleTwo,
+                                              ),
+                                            )),
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Consts.snackBarSuccessfulColor,
+                                                  borderRadius: BorderRadius.circular(12)
                                             ),
-                                          )),
-                                      Container(
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Consts.snackBarSuccessfulColor,
-                                                borderRadius: BorderRadius.circular(12)
-                                          ),
-                                          
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "20",
-                                              style: Consts.textStyleTwo,
-                                            ),
-                                          )),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )),
+                                            
+                                            child:  Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                 "\$${data["price"]}" ,
+                                                style: Consts.textStyleTwo,
+                                              ),
+                                            )),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ),
                       ),
                     );
                   }).toList(),

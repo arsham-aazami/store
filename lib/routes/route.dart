@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:store/consts.dart';
 import 'package:store/routes/login.dart';
 import 'package:store/routes/productDetails.dart';
-import 'package:store/routes/signup.dart';
-import './home.dart';
 
 class Rout extends StatelessWidget {
   final Future<FirebaseApp> fireBaseTest = Firebase.initializeApp();
@@ -40,7 +38,7 @@ class Rout extends StatelessWidget {
                   print("connected to firebase");
                   return const LoginPage();
                 } else {
-                  return ProductDetails(productId:'234',);
+                  return const ProductDetails(productId: "FUPos56kfF7afbrd6AvB",);
                 }
               }
               return Container();

@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
     String? result = await logingInUser();
     if (result != "OK") {
       showAlertDialog(result!);
-      setState(() =>  isLoading = false);
+      setState(() => isLoading = false);
     } else {
       setState(() => isLoading = false);
       Get.snackbar("Successful", "You loged in successfully",
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../consts.dart';
 
 class CustomButton extends StatelessWidget {
-  final String? text;
+  final String text;
   final Color buttonContainerColor;
   final TextStyle? buttonTextStyle;
   final Color? borderColor;
@@ -53,7 +53,7 @@ class CustomButton extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
-                    "$text",
+                    text,
                     style: buttonTextStyle,
                   ),
                 ),
@@ -61,9 +61,9 @@ class CustomButton extends StatelessWidget {
             ),
             Visibility(
               visible: loading ? true : false,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: const Center(
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Center(
                   child: SizedBox(
                     width: 25,
                     height: 25,
