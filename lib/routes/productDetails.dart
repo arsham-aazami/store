@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:store/routes/customActionBar.dart';
 import 'package:store/routes/imageSwape.dart';
 import 'package:store/routes/mainHome.dart';
+import 'package:store/routes/sizeWidget.dart';
 import 'package:store/widgets/customButton.dart';
 
 import '../consts.dart';
@@ -47,35 +48,76 @@ class _ProductDetailsState extends State<ProductDetails> {
                       snapshot.data!.data() as Map<String, dynamic>;
 
                   List productsImages = data["images"];
-
+                  List productSizes = data["sizes"];
                   return Padding(
                     padding: const EdgeInsets.only(top: 70),
                     child: Center(
-                      child: ListView(
-                          // scrollDirection: Axis.horizontal,
-                          children: [
-                            ImageSwap(imageList: productsImages),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 25),
-                              child: Text('\$${data["price"]}',
-                                  style: Consts.headingTextStyleThree),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 25),
-                              child: Text("${data['name']}",
-                                  style: Consts.textStyleTwo),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 25),
-                              child: Text(
-                                "${data['description']}",
-                                style: Consts.descriptionTextStyle,
-                              ),
-                            )
-                          ]),
+                      child: ListView(children: [
+                        ImageSwap(imageList: productsImages),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: Text('\$${data["price"]}',
+                              style: Consts.headingTextStyleThree),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 25),
+                          child: Text("${data['name']}",
+                              style: Consts.textStyleTwo),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 25),
+                          child: Text(
+                            "${data['description']}",
+                            style: Consts.descriptionTextStyle,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 25),
+                          child: Text(
+                            "Select Size",
+                            style: Consts.textStyleTwo,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 25),
+                          child: Row(
+                            children: [
+                              for (int j = 0; j < productSizes.length; j++)
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: SizeWidget(
+                                      size: productSizes[j].toString()),
+                                ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CustomButton(
+                                  text: "Save",
+                                  width: 100,
+                                  height: 80,
+                                  buttonContainerColor: Consts.colorStyleFour,
+                                  click: () => print("arsham")),
+                              CustomButton(
+                                  text: "Add to chart",
+                                  width: 220,
+                                  height: 80,
+                                  borderColor: Consts.customizedBlue,
+                                  buttonContainerColor: Consts.customizedBlue,
+                                  click: () => print("arsham"))
+                            ],
+                          ),
+                        )
+                      ]),
                     ),
                   );
                 }
@@ -96,27 +138,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                 ),
                 number: 0),
-            Padding(
-              padding: const EdgeInsets.only(top: 700),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CustomButton(
-                      text: "Save",
-                      width: 100,
-                      height: 80,
-                      buttonContainerColor: Consts.colorStyleFour,
-                      click: () => print("arsham")),
-                  CustomButton(
-                      text: "Add to chart",
-                      width: 220,
-                      height: 80,
-                      borderColor: Consts.customizedBlue,
-                      buttonContainerColor: Consts.customizedBlue,
-                      click: () => print("arsham"))
-                ],
-              ),
-            )
           ],
         ),
       ),

@@ -19,5 +19,6 @@ class Consts{
   static const headingTextStyleTwo = TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: colorStyleFour);
   static const headingTextStyleThree = TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: snackBarSuccessfulColor);
   static const descriptionTextStyle = TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: colorStyleFour);
+  static const sizeWidgetTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: colorStyleThree);
 
 }

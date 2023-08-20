@@ -22,7 +22,10 @@ class _HomeState extends State<Home> {
          backgroundColor: Consts.customizedGrayOne,
         body: bottomTap.elementAt(currentIndex),
         bottomNavigationBar: Container(
-          decoration: const BoxDecoration(color: Consts.customizedGrayOne),
+          decoration: const BoxDecoration(
+            color: Consts.customizedGrayOne,
+            boxShadow: [ BoxShadow(color: Consts.colorStyleThree, blurRadius: 40)]
+            ),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
@@ -37,6 +40,7 @@ class _HomeState extends State<Home> {
                   tabBackgroundColor: Consts.colorStyleThree,
                   tabBorderRadius: 15,
                   iconSize: 30,
+                  gap: 5,
                   tabs: const [
                     GButton(icon: Icons.search),
                     GButton(icon: Icons.home),
